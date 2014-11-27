@@ -21,5 +21,5 @@
   :profiles {:dev {:dependencies [[com.gfredericks/vcr-clj "0.4.0"]
                                   [javax.servlet/servlet-api "2.5"]
                                   [midje "1.6.3"]
-                                  [ring-mock "0.1.5"] ]}})
+                                  [ring-mock "0.1.5"]]}})
 
