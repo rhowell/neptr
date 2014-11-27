@@ -1,8 +1,8 @@
-(ns jazz.core.talker
+(ns neptr.core.talker
   (:require [cheshire.core :as cheshire]
             [clojure.string :as s]
-            [jazz.core.grammer-jammer :as jammer]
-            [jazz.utils :as utils]))
+            [neptr.core.grammer-jammer :as jammer]
+            [neptr.utils :as utils]))
 
 
 (declare respond)
@@ -17,7 +17,7 @@
                   (s/lower-case)
                   (cheshire/parse-string true)
                   :item)]
-    (when (some #(= (get % :name) "jazz") ((message :message) :mentions))
+    (when (some #(= (get % :name) "neptr") ((message :message) :mentions))
       (jammer/discern message))))
 
 (defn respond

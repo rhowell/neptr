@@ -1,9 +1,8 @@
-# Jazz
+# NEPTR - Never Ending Program Transmogrifying Robot
 
-Jazz, like the Autobot of the same name is one seriously cool robot.  
+NEPTR, is really freakin cool, especially for a non-sentient little fella.
 
-Jazz has but one mission in life.  To fascilitate building awesome software.
-Initially Jazz understands Hipchat & Go Continuous Delivery.  Jazz will hangout on Hipchat all day and night, just waiting for you to ask for help.  Jazz will fascilitate builds, testing, environment setup & teardown and all the other goodies you'd expect from your continuous delivery platform.  The great advantage of using Jazz is that you similtaniously intiate deploys & communicate this to your team. 
+NEPTR lives for one reaason, and one reason alone:  To make your software deployment workflow easier.  Initially, he talks to HipChat and Go Continuous Delivery server.  While it's only a little bit quicker than using the Go client directly, the biggest advantage is the increased visibilty within your team.  He'll initiate builds, communicate project status, setup and tear down environments via puppet, chef, bash scripts, really any command that he has permission to run.
 
 ## Prerequisites
 

@@ -1,6 +1,6 @@
-(ns jazz.utils-test
+(ns neptr.utils-test
   (:use midje.sweet
-        jazz.utils))
+        neptr.utils))
 
 (facts utils 
   (fact "Given 'deploy' and 'dpeloy' string-distance should return 83%"

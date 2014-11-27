@@ -1,7 +1,7 @@
-(ns jazz.core.handler-test
+(ns neptr.core.handler-test
   (:require [clojure.test :refer :all]
             [ring.mock.request :as mock]
-            [jazz.core.handler :refer :all]))
+            [neptr.core.handler :refer :all]))
 
 (deftest test-app
   (testing "main route"

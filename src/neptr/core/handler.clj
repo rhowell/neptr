@@ -1,5 +1,5 @@
-(ns jazz.core.handler
-  (:require [jazz.core.talker :as talker]
+(ns neptr.core.handler
+  (:require [neptr.core.talker :as talker]
             [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))

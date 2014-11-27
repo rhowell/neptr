@@ -1,12 +1,12 @@
-(ns jazz.core.talker-test
+(ns neptr.core.talker-test
   (:use midje.sweet
-        jazz.core.talker))
+        neptr.core.talker))
 
 (def good-message
   "{\"item\":
     {\"message\": 
-      {\"message\": \"Jazz: Deploy jazz to qa branch witty-remarks\",
-       \"mentions\": [{\"name\": \"Jazz\"}],
+      {\"message\": \"neptr: Deploy neptr to qa branch witty-remarks\",
+       \"mentions\": [{\"name\": \"neptr\"}],
        \"from\": \"Johnny Bravo\"}
    }
   }")

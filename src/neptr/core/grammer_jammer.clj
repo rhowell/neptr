@@ -1,6 +1,6 @@
 ; Analyzes verbs to disect their meaning
-(ns jazz.core.grammer-jammer
-  (:require [jazz.utils :as utils]
+(ns neptr.core.grammer-jammer
+  (:require [neptr.utils :as utils]
             [clojure.string :as s]))
 
 (def verbs ["deploy" "help" "abort"])

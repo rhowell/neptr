@@ -1,4 +1,4 @@
-(ns jazz.utils
+(ns neptr.utils
   (:require [clojure.string :as s]))
 
 (declare string-cleaner)

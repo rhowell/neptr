@@ -1,6 +1,6 @@
-(ns jazz.core.grammer-jammer-test
+(ns neptr.core.grammer-jammer-test
   (:use midje.sweet
-        jazz.core.grammer-jammer))
+        neptr.core.grammer-jammer))
 
 (facts grammer
   (fact "Disect will return true if given a deploy verb"
