@@ -7,7 +7,7 @@
 
 (declare respond)
 
-(def help "You're on your own sucker")
+(def help "I am sorry creator.  The help file is still on your TODO list.")
 
 (defn process-message
   [request]
@@ -16,10 +16,9 @@
                   :body
                   (s/lower-case)
                   (cheshire/parse-string true)
-                  :item
-                  :message)]
-    (when (some #(= (get % :name) "jazz") (message :mentions))
-      (respond (:message message)))))
+                  :item)]
+    (when (some #(= (get % :name) "jazz") ((message :message) :mentions))
+      (jammer/discern message))))
 
 (defn respond
   [message]

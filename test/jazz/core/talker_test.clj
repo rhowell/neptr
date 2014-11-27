@@ -6,7 +6,8 @@
   "{\"item\":
     {\"message\": 
       {\"message\": \"Jazz: Deploy jazz to qa branch witty-remarks\",
-       \"mentions\": [{\"name\": \"Jazz\"}]}
+       \"mentions\": [{\"name\": \"Jazz\"}],
+       \"from\": \"Johnny Bravo\"}
    }
   }")
 
@@ -14,6 +15,7 @@
   (fact "When receiving a message pertaining to us"
         (process-message {:body good-message}) => {:cmd-type :clear
                                                    :verb "deploy"
-                                                   :valid true})
+                                                   :valid true
+                                                   :owner "johnny bravo"})
   (fact "When receiving a message not pertaining to us"
         (process-message {:body "{\"item\": {\"message\": {\"message\": \"What's up yo?\"}}}"}) => nil))

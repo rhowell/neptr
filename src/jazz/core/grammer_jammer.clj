@@ -5,10 +5,21 @@
 
 (def verbs ["deploy" "help" "abort"])
 
+(declare abort)
 (declare disect)
+(declare dispatch-command)
 (declare execute)
 (declare find-verb)
+(declare parse-deploy)
 (declare fuzzy-match-verb)
+
+(defn discern
+  [message]
+  (let [match-result (assoc (disect ((message :message) :message))
+                            :owner ((message :message) :from))]
+    (when (match-result :valid)
+      (dispatch-command match-result))
+    match-result))
 
 (defn fuzzy-disect
   [words]
@@ -42,6 +53,23 @@
         (if match
           match
           (recur (rest words)))))))
+
+(defn dispatch-command
+  [match-result]
+  (condp = (:verb match-result)
+    :deploy (parse-deploy match-result)
+    :help   nil
+    :abort  (abort match-result)
+    nil))
+
+(defn parse-deploy
+  [match-result]
+  )
+
+(defn abort
+  [match-result]
+  )
+
 
 (defn execute
   [words verb cmd-type]
