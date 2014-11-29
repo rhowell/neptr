@@ -18,4 +18,5 @@
                                                    :valid true
                                                    :owner "johnny bravo"})
   (fact "When receiving a message not pertaining to us"
-        (process-message {:body "{\"item\": {\"message\": {\"message\": \"What's up yo?\"}}}"}) => nil))
+        (process-message {:body "{\"item\": {\"message\": {\"message\": \"What's up yo?\"}}}"}) => nil)
+  )

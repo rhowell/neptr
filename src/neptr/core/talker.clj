@@ -22,7 +22,7 @@
 
 (defn respond
   [message]
-  (let [meaning (jammer/disect message)]
+  (let [meaning (jammer/discern message)]
     (if (meaning :clear)
       (condp = (meaning :verb)
         "execute" (send "Yes creator.  I will let you know how it works out")

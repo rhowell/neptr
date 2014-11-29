@@ -1,6 +1,8 @@
 ; Analyzes verbs to disect their meaning
 (ns neptr.core.grammer-jammer
   (:require [neptr.utils :as utils]
+            [neptr.core.jobs :as jobs]
+            [clj-http.client :as http]
             [clojure.string :as s]))
 
 (def verbs ["deploy" "help" "abort"])
@@ -10,7 +12,7 @@
 (declare dispatch-command)
 (declare execute)
 (declare find-verb)
-(declare parse-deploy)
+(declare execute-deploy)
 (declare fuzzy-match-verb)
 
 (defn discern
@@ -35,9 +37,10 @@
   (let [verb (first (clojure.set/intersection (set words) (set verbs)))]
     (if verb
       (execute words verb :clear)
-      (fuzzy-disect words))))
+      {:cmd-type :unclear
+       :valid false})))
 
-(defn disect
+(defn- disect
   [message]
   (let [words (into #{} (s/split message #"\s+"))]
     (or (exact-disect words)
@@ -57,19 +60,43 @@
 (defn dispatch-command
   [match-result]
   (condp = (:verb match-result)
-    :deploy (parse-deploy match-result)
-    :help   nil
+    :deploy (execute-deploy match-result)
+    :help   {:cmd-type :clear
+             :verb "help"}
     :abort  (abort match-result)
     nil))
 
-(defn parse-deploy
-  [match-result]
-  )
+(defn- get-noun
+  [words verb]
+  (loop [[word & words] words]
+    (if (= word verb)
+      (first words)
+      (recur words))))
+
+(defn- send-command
+  [match]
+  (let [url (s/join (map #(str (first %) "=" (second %)) (match :params)) "&")
+        response (http/post url)]
+    (if (< 400 (:status response))
+      (assoc match :response (:body response))
+      (merge match {:cmd-type :failed 
+                    :reason (:body response)}))))
+      
+      
+(defn execute-deploy
+  [{:keys [params] :as match-result}]
+  (if (and (params :project) (params :env))
+    (send-command match-result)
+    {:cmd-type :unclear
+     :verb "deploy"
+     :valid false}))
 
 (defn abort
   [match-result]
-  )
-
+  (let [job (jobs/find match-result)
+        match-result (assoc match-result :params [])]
+    (if job
+      (send-command match-result))))
 
 (defn execute
   [words verb cmd-type]
